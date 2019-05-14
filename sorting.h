@@ -9,11 +9,13 @@ void printArray(int arr[], int size);
 /* Sorts arr using selection sort */
 int* selectionSort(int unsorted[], int size);
 
-/* Sorts arr using insertion sort. */
+/* Sorts arr using insertion sort */
 int* insertionSort(int unsorted[], int size);
 
+/* Sorts unsorted using bubble sort */
 int* bubbleSort(int unsorted[], int size);
 
+/* Sorts unsorted using shell sort */
 int* shellSort(int unsorted[], int size);
 
 /* Divides the array in half with each iteration; sorts out the numbers in the merge. Divide and Conquer algorithm */
