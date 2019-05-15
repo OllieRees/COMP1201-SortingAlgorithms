@@ -27,3 +27,6 @@ int* quickSort(int unsorted[], int size);
 /* Sorts arr using radix sort */
 int*  radixsort(int unsorted[], int size);
 
+/* Decides what sorting method is called via the string provided in the cmd. line. */
+void callSortingMethod(char * sortingName, int arr[], int size, bool printSorted);
+
