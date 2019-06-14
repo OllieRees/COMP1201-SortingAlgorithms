@@ -115,6 +115,10 @@ int* shellSort(int unsorted[], int size) {
 	return ptr;
 }
 
+static void merge(int main_arr[], int l_arr[], int r_arr[], int l_size, int r_size) {
+
+}
+
 int* mergeSort(int unsorted[], int size) {
     int* ptr = unsorted;
     
@@ -136,42 +140,12 @@ int* mergeSort(int unsorted[], int size) {
         unsorted_r[i] = unsorted[i];
     }
     
-    mergeSort(unsorted_l, l_size);
-    mergeSort(unsorted_r, size - l_size);
-    int* unsorted_ptr = unsorted;
-    merge(unsorted_ptr, unsorted_l, unsorted_r, l_size, (size - l_size)); //need to copy the merge over to unsorted
+    unsorted_l = mergeSort(unsorted_l, l_size);
+    unsorted_r = mergeSort(unsorted_r, size - l_size);
+    return merge(unsorted, unsorted_l, unsorted_r, l_size, (size - l_size)); //need to copy the merge over to unsorted
 }
 
-void merge(int* unsorted_ptr, int unsortedL[], int unsortedR[], int l_size, int r_size) {
-    int size = l_size + r_size;
-    int i, j, k;
-    i = j = k = 0;
-    while (j < l_size && k < r_size) {
-        if(unsortedL[j] < unsortedR[k]) {
-            unsorted_ptr[i] = unsortedL[j];
-            j++;
-            i++;
-        }
-        if(unsortedR[k] < unsortedL[j]) {
-            unsorted_ptr[i] = unsortedR[k];
-            k++;
-            i++;
-        }
-    }
-    while(j < l_size) {
-        unsorted_ptr[i] = unsortedL[j];
-        j++;
-        i++;
-    }
-    while(k < r_size) {
-        unsorted_ptr[i] = unsortedL[k];
-        k++;
-        i++;
-    }
-                
-}
-
-void callSortingMethod(char * sortingName, int arr[], int size, bool printSorted) {
+void callSortingMethod(char * name, int arr[], int size, bool printSorted) {
 	int* ptr = malloc(size * sizeof(int));
 	if(sortingName == "insertion")
 		ptr = insertionSort(arr, size);
@@ -181,8 +155,8 @@ void callSortingMethod(char * sortingName, int arr[], int size, bool printSorted
 		ptr = bubbleSort(arr, size);
 	if(sortingName == "shell")
 		ptr = shellSort(arr, size);
-    if(sortingName == "merge")
-        ptr = mergeSort(arr, size);
+    	if(sortingName == "merge")
+        	ptr = mergeSort(arr, size);
 	if(printSorted)
 		printArray(ptr, size);
 }
